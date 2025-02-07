@@ -95,5 +95,14 @@ def handle_game_over():
     # Emit game over event with the winner's name
     socketio.emit("game_over", final_scores)
 
+@socketio.on("restart_game")
+def handle_restart_game():
+    global game_started, players, question_index
+    game_started = False
+    question_index = 0
+    players = []  # Reset players
+
+    emit("game_reset", broadcast=True)  # Notify clients to reset their UI
+
 if __name__ == '__main__':
     socketio.run(app, host = '0.0.0.0',debug=True)
