@@ -84,6 +84,7 @@
     <div id="winner-container" class="hidden">
         <h2>🏆 Congratulations! 🏆</h2>
         <p>The winner is <span id="winner-name"></span>!</p>
+        <button id="restart-game-button" class="hidden" onclick="restartGame()">Restart Game</button>
     </div>
     <div id="wait-container" class="hidden">
         <h3>Wait for the host to start.. </h3>
@@ -173,6 +174,10 @@
             document.getElementById("winner-container").classList.remove("hidden");
             document.getElementById("winner-container").style.display = "block";
             document.getElementById("winner-name").innerText = data.winner;
+            // Show the restart button only if the player is the host
+            if (isHost) {
+                document.getElementById("restart-game-button").classList.remove("hidden");
+            }
         });
 
         socket.on("assign_host", (data) => {
@@ -237,6 +242,19 @@
                 }
             });
         }
+
+        // Restart the game when the button is clicked
+        function restartGame() {
+            if (isHost) {
+                socket.emit("restart_game");
+            }
+        }
+        
+        // Reset the UI when game is reset
+        socket.on("game_reset", () => {
+            document.getElementById("winner-container").classList.add("hidden");
+            document.getElementById("join-container").classList.remove("hidden");
+        });
 
         socket.on("show_scores", (data) => {
             document.getElementById("question-container").classList.add("hidden");
