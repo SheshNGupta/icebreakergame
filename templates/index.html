@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Quiz Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        .hidden { display: none; }
+        #question-container, #scoreboard { margin-top: 20px; }
+        button { margin: 5px; padding: 10px; font-size: 16px; cursor: pointer; }
+        .correct { background-color: #4CAF50; color: white; }
+        .wrong { background-color: #f44336; color: white; }
+        .highlight { animation: highlight 1s ease-in-out; }
+        @keyframes highlight {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #question {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        #timer {
+            font-size: 24px;
+            font-weight: bold;
+            transition: transform 0.5s ease-in-out;
+        }
+        @keyframes flash {
+            0% { background-color: #4CAF50; }
+            50% { background-color: #fff; }
+            100% { background-color: #4CAF50; }
+        }
+
+        .correct {
+            animation: flash 1s ease-in-out 3;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        #winner-container {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
+            animation: bounceIn 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>Real-Time Quiz Game</h1>
+    
+    <div id="join-container">
+        <input type="text" id="username" placeholder="Enter your name">
+        <button onclick="joinGame()">Join Game</button>
+    </div>
+    
+    <div id="start-game-container" class="hidden">
+        <button onclick="startGame()">Start Game</button>
+    </div>
+    <div id="user-container" class="hidden">
+        <h4>Welcome <span id="user-name"></span>!</h4>
+    </div>
+    
+    <div id="question-container" class="hidden">
+        <h2 id="question"></h2>
+        <img id="question-image" class="hidden" src="" style="max-width: 300px;margin: 10px;">
+        <div id="options"></div>
+        <p>Time Left: <span id="timer">40</span> sec</p>
+    </div>
+    
+    <div id="scoreboard" class="hidden">
+        <h2>Scores</h2>
+        <ul id="scores"></ul>
+        <p id="next-question-message" class="hidden">Next question is loading in <span id="next-question-timer">10</span> sec...</p>
+    </div>
+    <div id="winner-container" class="hidden">
+        <h2>🏆 Congratulations! 🏆</h2>
+        <p>The winner is <span id="winner-name"></span>!</p>
+    </div>
+    <div id="wait-container" class="hidden">
+        <h3>Wait for the host to start.. </h3>
+        <h2>Rules</h2>
+        <ul>
+        <li>10 MCQ with one correct answer</li>
+        <li>40 Secs to answer</li>
+        <li>The faster you answer, the more points yo get</li>
+        <li>Wait time of 10 Sec for next question</li>
+        <li>No negative points for a wrong answer</li>
+        <li>Person with most point at the end wins</li>
+        </ul>
+        
+    </div>
+    
+    <script>
+        const socket = io();
+        let username = "";
+        let timerInterval;
+        let nextQuestionTimerInterval;
+        let correctAnswer = "";
+        let isHost = false;
+        
+        function joinGame() {
+            username = document.getElementById("username").value;
+            document.getElementById("user-container").classList.remove("hidden");
+            document.getElementById("user-name").innerText = username;
+            if (username) {
+                socket.emit("join", { username });
+                document.getElementById("join-container").classList.add("hidden");
+                if(isHost)
+                {
+                document.getElementById("start-game-container").classList.remove("hidden");
+                }
+                else
+                {
+                    document.getElementById("wait-container").classList.remove("hidden");
+                }
+                
+            }
+        }
+
+        function startGame() {
+            document.getElementById("wait-container").classList.add("hidden");
+            if (isHost) {
+                socket.emit("start_game");
+                document.getElementById("start-game-container").classList.add("hidden");
+                document.getElementById("winner-container").classList.add("hidden");
+                
+            }
+        }
+
+        socket.on("new_question", (data) => {
+            document.getElementById("question-container").classList.remove("hidden");
+            document.getElementById("scoreboard").classList.add("hidden");
+            document.getElementById("next-question-message").classList.add("hidden");
+            document.getElementById("wait-container").classList.add("hidden");
+            document.getElementById("question").innerText = data.question;
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            correctAnswer = data.answer;
+            const questionImage = document.getElementById("question-image");
+            if(data.image)
+            {
+                questionImage.src= data.image;
+                questionImage.classList.remove("hidden");
+            }
+            else
+            {
+                questionImage.classList.add("hidden");
+            }
+            
+            data.options.forEach(option => {
+                let button = document.createElement("button");
+                button.innerText = option;
+                button.onclick = () => sendAnswer(option, button);
+                optionsDiv.appendChild(button);
+            });
+            
+            startTimer(40);
+        });
+
+        socket.on("game_over", (data) => {
+            document.getElementById("scoreboard").classList.add("hidden");
+            document.getElementById("next-question-message").classList.add("hidden");
+            clearInterval(nextQuestionTimerInterval);
+            document.getElementById("winner-container").classList.remove("hidden");
+            document.getElementById("winner-container").style.display = "block";
+            document.getElementById("winner-name").innerText = data.winner;
+        });
+
+        socket.on("assign_host", (data) => {
+            if (data.username === username)
+            {
+            isHost = true;
+            document.getElementById("start-game-container").classList.remove("hidden");
+            
+            }
+            
+        });
+
+        socket.on("last_question", (data) => {
+            ddocument.getElementById("next-question-message").classList.add("hidden");;
+            
+            
+            
+        });
+
+        function sendAnswer(answer, button) {
+            socket.emit("answer", { username, answer });
+            if (answer === correctAnswer) {
+                button.classList.add("correct", "highlight");
+            } else {
+                button.classList.add("wrong", "highlight");
+            }
+        }
+
+        function startTimer1(duration) {
+            let timeLeft = duration;
+            document.getElementById("timer").innerText = timeLeft;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timer").innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    highlightCorrectAnswer();
+                }
+            }, 1000);
+        }
+
+        function startTimer(duration) {
+            let timeLeft = duration;
+            document.getElementById("timer").innerText = timeLeft;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timer").innerText = timeLeft;
+                document.getElementById("timer").style.transform = `scale(${1 + (timeLeft / duration) * 0.3})`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    highlightCorrectAnswer();
+                }
+            }, 1000);
+        }
+
+        function highlightCorrectAnswer() {
+            document.querySelectorAll("#options button").forEach(button => {
+                if (button.innerText === correctAnswer) {
+                    button.classList.add("correct", "highlight");
+                }
+            });
+        }
+
+        socket.on("show_scores", (data) => {
+            document.getElementById("question-container").classList.add("hidden");
+            document.getElementById("scoreboard").classList.remove("hidden");
+            document.getElementById("next-question-message").classList.remove("hidden");
+            startNextQuestionTimer(10);
+            const scoresList = document.getElementById("scores");
+            scoresList.innerHTML = "";
+            for (const [player, score] of Object.entries(data)) {
+                let listItem = document.createElement("li");
+                listItem.innerText = `${player}: ${score} points`;
+                scoresList.appendChild(listItem);
+            }
+        });
+
+        function startNextQuestionTimer(duration) {
+            let timeLeft = duration;
+            document.getElementById("next-question-timer").innerText = timeLeft;
+            clearInterval(nextQuestionTimerInterval);
+            nextQuestionTimerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById("next-question-timer").innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(nextQuestionTimerInterval);
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
