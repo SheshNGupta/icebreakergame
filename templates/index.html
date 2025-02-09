@@ -52,6 +52,20 @@
             font-weight: bold;
             animation: bounceIn 1s ease-in-out;
         }
+        table {
+            width: 50%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -78,7 +92,17 @@
     
     <div id="scoreboard" class="hidden">
         <h2>Scores</h2>
-        <ul id="scores"></ul>
+        <!--<ul id="scores"></ul>-->
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="scores"></tbody>
+        </table>
         <p id="next-question-message" class="hidden">Next question is loading in <span id="next-question-timer">10</span> sec...</p>
     </div>
     <div id="winner-container" class="hidden">
@@ -107,6 +131,7 @@
         let nextQuestionTimerInterval;
         let correctAnswer = "";
         let isHost = false;
+        let hasAnswered = false;
         
         function joinGame() {
             username = document.getElementById("username").value;
@@ -198,11 +223,17 @@
         });
 
         function sendAnswer(answer, button) {
-            socket.emit("answer", { username, answer });
-            if (answer === correctAnswer) {
-                button.classList.add("correct", "highlight");
-            } else {
-                button.classList.add("wrong", "highlight");
+            if(!hasAnswered)
+                {
+                socket.emit("answer", { username, answer });
+                hasAnswered = true;
+                if (answer === correctAnswer) {
+                    button.classList.add("correct", "highlight");
+                } else {
+                    button.classList.add("wrong", "highlight");
+                }
+                    // Disable all answer buttons after selection
+                document.querySelectorAll("#options button").forEach(btn => btn.disabled = true);
             }
         }
 
@@ -263,10 +294,20 @@
             startNextQuestionTimer(10);
             const scoresList = document.getElementById("scores");
             scoresList.innerHTML = "";
-            for (const [player, score] of Object.entries(data)) {
-                let listItem = document.createElement("li");
-                listItem.innerText = `${player}: ${score} points`;
-                scoresList.appendChild(listItem);
+            //for (const [player, score] of Object.entries(data)) {
+            //    let listItem = document.createElement("li");
+            //    listItem.innerText = `${player}: ${score} points`;
+            //    scoresList.appendChild(listItem);
+            //}
+            const sortedScores = Object.entries(data).sort((a, b) => b[1] - a[1]).slice(0, 3);
+            //sortedScores.forEach(([player, score]) => {
+            //    let listItem = document.createElement("li");
+            //    listItem.innerText = `${player}: ${score} points`;
+            //    scoresList.appendChild(listItem);
+            sortedScores.forEach(([player, score], index) => {
+            let row = document.createElement("tr");
+            row.innerHTML = `<td>${index + 1}</td><td>${player}</td><td>${score}</td>`;
+            scoresTable.appendChild(row);
             }
         });
 
