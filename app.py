@@ -76,12 +76,16 @@ def handle_answer(data):
     global time_started
     username = data["username"]
     answer = data["answer"]
+    
+    if current_question is None:
+        return
+    
     elapsed_time = time.time() - time_started
     score = max(100 - int(elapsed_time), 60)  # Min 40 points for answering
 
     if answer == current_question["answer"]:
         players[username] += score
-    emit("update_scores", players, broadcast=True)
+    #emit("update_scores", players, broadcast=True)
 
 @socketio.on("game_over")
 def handle_game_over():
@@ -93,6 +97,8 @@ def handle_game_over():
         final_scores = {"scores": {}, "winner": "No players"}
 
     # Emit game over event with the winner's name
+    global game_started
+    game_started = False
     socketio.emit("game_over", final_scores)
 
 @socketio.on("restart_game")
@@ -100,7 +106,7 @@ def handle_restart_game():
     global game_started, players, question_index
     game_started = False
     question_index = 0
-    players = []  # Reset players
+    players = {}  # Reset players
 
     emit("game_reset", broadcast=True)  # Notify clients to reset their UI
 
