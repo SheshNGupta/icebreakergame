@@ -168,6 +168,7 @@
             document.getElementById("next-question-message").classList.add("hidden");
             document.getElementById("wait-container").classList.add("hidden");
             document.getElementById("question").innerText = data.question;
+            hasAnswered = false;
             const optionsDiv = document.getElementById("options");
             optionsDiv.innerHTML = "";
             correctAnswer = data.answer;
@@ -216,7 +217,7 @@
         });
 
         socket.on("last_question", (data) => {
-            ddocument.getElementById("next-question-message").classList.add("hidden");;
+            ddocument.getElementById("next-question-message").classList.add("hidden");
             
             
             
@@ -279,6 +280,9 @@
             if (isHost) {
                 socket.emit("restart_game");
             }
+            document.getElementById("winner-container").classList.add("hidden");
+            document.getElementById("scoreboard").classList.add("hidden");
+            document.getElementById("question-container").classList.add("hidden");
         }
         
         // Reset the UI when game is reset
@@ -292,7 +296,8 @@
             document.getElementById("scoreboard").classList.remove("hidden");
             document.getElementById("next-question-message").classList.remove("hidden");
             startNextQuestionTimer(10);
-            const scoresList = document.getElementById("scores");
+            //const scoresList = document.getElementById("scores");
+            const scoresTable = document.getElementById("scores");
             scoresList.innerHTML = "";
             //for (const [player, score] of Object.entries(data)) {
             //    let listItem = document.createElement("li");
