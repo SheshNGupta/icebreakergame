@@ -112,15 +112,19 @@
     </div>
     <div id="wait-container" class="hidden">
         <h3>Wait for the host to start.. </h3>
-        <h2>Rules</h2>
-        <ul>
-        <li>10 MCQ with one correct answer</li>
-        <li>40 Secs to answer</li>
-        <li>The faster you answer, the more points yo get</li>
-        <li>Wait time of 10 Sec for next question</li>
-        <li>No negative points for a wrong answer</li>
-        <li>Person with most point at the end wins</li>
-        </ul>
+          <table>
+            <thead>
+                <tr>
+                    <th>Rules</th>
+                </tr>
+            <tr><td>10 MCQ with one correct answer</td></tr>
+             <tr><td>40 Secs to answer</td></tr>
+             <tr><td>The faster you answer, the more points yo get</td></tr>
+             <tr><td>Wait time of 10 Sec for next question</td></tr>
+             <tr><td>No negative points for a wrong answer</td></tr>
+             <tr><td>Person with most point at the end wins</td></tr>
+            </thead>
+         </table>
         
     </div>
     
@@ -296,8 +300,8 @@
             document.getElementById("scoreboard").classList.remove("hidden");
             document.getElementById("next-question-message").classList.remove("hidden");
             startNextQuestionTimer(10);
-            //const scoresList = document.getElementById("scores");
-            const scoresTable = document.getElementById("scores");
+            const scoresList = document.getElementById("scores");
+            //const scoresTable = document.getElementById("scores");
             scoresList.innerHTML = "";
             //for (const [player, score] of Object.entries(data)) {
             //    let listItem = document.createElement("li");
@@ -312,7 +316,7 @@
             sortedScores.forEach(([player, score], index) => {
             let row = document.createElement("tr");
             row.innerHTML = `<td>${index + 1}</td><td>${player}</td><td>${score}</td>`;
-            scoresTable.appendChild(row);
+            scoresList.appendChild(row);
             })
         });
 
