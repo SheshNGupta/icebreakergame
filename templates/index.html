@@ -282,17 +282,27 @@
         // Restart the game when the button is clicked
         function restartGame() {
             if (isHost) {
+                console.log("Emitting restart_game event to server...");
                 socket.emit("restart_game");
             }
-            document.getElementById("winner-container").classList.add("hidden");
-            document.getElementById("scoreboard").classList.add("hidden");
-            document.getElementById("question-container").classList.add("hidden");
+            //document.getElementById("winner-container").classList.add("hidden");
+            //document.getElementById("scoreboard").classList.add("hidden");
+            //document.getElementById("question-container").classList.add("hidden");
         }
         
         // Reset the UI when game is reset
         socket.on("game_reset", () => {
+            console.log("Game reset received from server");
+
             document.getElementById("winner-container").classList.add("hidden");
+            document.getElementById("scoreboard").classList.add("hidden");
+            document.getElementById("question-container").classList.add("hidden");
             document.getElementById("join-container").classList.remove("hidden");
+        
+            isHost = false;  // Reset host status
+            hasAnswered = false;  // Allow answering again
+        
+            console.log("UI reset completed.");
         });
 
         socket.on("show_scores", (data) => {
