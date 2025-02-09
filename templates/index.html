@@ -211,12 +211,12 @@
         });
 
         socket.on("assign_host", (data) => {
-            //if (data.username === username)
-            //{
-            isHost = true;
-            document.getElementById("start-game-container").classList.remove("hidden");
-            
-            //}
+            if (data.username === username) {
+                isHost = true;
+                document.getElementById("start-game-container").classList.remove("hidden");
+            } else {
+                document.getElementById("start-game-container").classList.add("hidden");
+            }
             
         });
 
@@ -294,9 +294,18 @@
         socket.on("game_reset", () => {
             console.log("Game reset received from server");
 
+            // Hide winner message
             document.getElementById("winner-container").classList.add("hidden");
+            document.getElementById("winner-container").style.display = "none";
+            document.getElementById("winner-name").innerText = "";
+        
+            // Hide other UI elements
             document.getElementById("scoreboard").classList.add("hidden");
             document.getElementById("question-container").classList.add("hidden");
+            document.getElementById("wait-container").classList.add("hidden");
+            document.getElementById("start-game-container").classList.add("hidden");
+            
+            // Show join screen again
             document.getElementById("join-container").classList.remove("hidden");
         
             isHost = false;  // Reset host status
