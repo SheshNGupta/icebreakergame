@@ -62,7 +62,7 @@ game_questions = [
         "question": "What does PCI-DSS ensure compliance for?",
         "options": ["Handling of customer health records", "Secure processing of credit card transactions", "Anti-money laundering policies", "Corporate tax regulations"],
         "answer": "Secure processing of credit card transactions",
-        "image": "https://cdn2.vectorstock.com/i/1000x1000/35/21/secure-transaction-icon-flat-design-vector-9283521.jpg"
+        "image": "https://static.vecteezy.com/system/resources/previews/005/068/826/non_2x/safety-shield-with-credit-card-an-icon-design-of-secure-transaction-vector.jpg"
     },
     {
         "question": "Which of the following is a key principle of compliance programs in organizations?",
