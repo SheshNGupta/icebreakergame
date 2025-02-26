@@ -110,6 +110,19 @@
         <p>The winner is <span id="winner-name"></span>!</p>
         <button id="restart-game-button" class="hidden" onclick="restartGame()">Restart Game</button>
     </div>
+    <div id="final-scoreboard" class="hidden">
+        <h2>Final Scores</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="final-scores"></tbody>
+        </table>
+    </div>
     <div id="wait-container" class="hidden">
         <h3>Wait for the host to start.. </h3>
           <table>
@@ -217,6 +230,15 @@
             if (isHost) {
                 document.getElementById("restart-game-button").classList.remove("hidden");
             }
+            const scoresTable = document.getElementById("final-scores");
+            scoresTable.innerHTML = "";
+            
+            const sortedScores = Object.entries(data.scores).sort((a, b) => b[1] - a[1]);
+            sortedScores.forEach(([player, score], index) => {
+                let row = document.createElement("tr");
+                row.innerHTML = `<td>${index + 1}</td><td>${player}</td><td>${score}</td>`;
+                scoresTable.appendChild(row);
+            });
         });
 
         socket.on("assign_host", (data) => {
