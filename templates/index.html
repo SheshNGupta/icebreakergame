@@ -112,7 +112,7 @@
     </div>
 
     <div id="final-scoreboard" class="hidden">
-            <h2>Final Scores</h2>
+            <h2>Final Scores &#128204;</h2>
             <table>
                 <thead>
                     <tr>
@@ -302,10 +302,7 @@
                 document.getElementById("timer").style.transform = `scale(${1 + (timeLeft / duration) * 0.3})`;
                 if (timeLeft <=0) {
                     clearInterval(timerInterval);
-                    if(timeLeft===3)
-                    {
-                    highlightCorrectAnswer();
-                    }
+                    
                 }
             }, 1000);
         }
