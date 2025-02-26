@@ -118,11 +118,11 @@
                     <th>Rules &#128194;</th>
                 </tr>
             <tr><td>10 Multiple Choice Questions with one correct answer</td></tr>
-             <tr><td>40 sec. to answer</td></tr>
-             <tr><td>The faster you answer, the more points yo get</td></tr>
-             <tr><td>Wait time of 10 sec. for next question</td></tr>
+             <tr><td>30 sec. to answer</td></tr>
+             <tr><td>The faster you answer, the more points you get</td></tr>
+             <tr><td>Wait time of 5 sec. for next question</td></tr>
              <tr><td>No negative points for a wrong answer</td></tr>
-             <tr><td>Person with most point at the end wins!</td></tr>
+             <tr><td>Person with most point at the end Wins!</td></tr>
             </thead>
          </table>
         <br>
@@ -203,7 +203,7 @@
                 optionsDiv.appendChild(button);
             });
             
-            startTimer(40);
+            startTimer(30);
         });
 
         socket.on("game_over", (data) => {
