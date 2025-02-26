@@ -299,7 +299,7 @@
                 timeLeft--;
                 document.getElementById("timer").innerText = timeLeft;
                 document.getElementById("timer").style.transform = `scale(${1 + (timeLeft / duration) * 0.3})`;
-                if (timeLeft <= 0) {
+                if (timeLeft === duration-1) {
                     clearInterval(timerInterval);
                     highlightCorrectAnswer();
                 }
