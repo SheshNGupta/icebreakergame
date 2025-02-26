@@ -271,6 +271,7 @@
                     button.classList.add("correct", "highlight");
                 } else {
                     button.classList.add("wrong", "highlight");
+                    highlightCorrectAnswer();
                 }
                     // Disable all answer buttons after selection
                 document.querySelectorAll("#options button").forEach(btn => btn.disabled = true);
