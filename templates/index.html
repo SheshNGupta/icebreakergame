@@ -237,6 +237,7 @@
 
             document.getElementById("winner-container").classList.remove("hidden");
             document.getElementById("winner-container").style.display = "block";
+            document.getElementById("final-scoreboard").classList.remove("hidden");
             document.getElementById("winner-name").innerText = data.winner;
             // Show the restart button only if the player is the host
             if (isHost) {
