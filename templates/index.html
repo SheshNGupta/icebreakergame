@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-Time Quiz Game</title>
+    <title>Chill and thrill Quiz </title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
@@ -109,7 +109,9 @@
         <h2>🏆 Congratulations! 🏆</h2>
         <p>The winner is <span id="winner-name"></span>!</p>
         <button id="restart-game-button" class="hidden" onclick="restartGame()">Restart Game</button>
-            <div id="final-scoreboard" class="hidden">
+    </div>
+
+    <div id="final-scoreboard" class="hidden">
             <h2>Final Scores</h2>
             <table>
                 <thead>
@@ -123,7 +125,6 @@
             </table>
         </div>
 
-    </div>
         <div id="wait-container" class="hidden">
         <h3>Wait for the host to start.. </h3>
           <table>
@@ -351,7 +352,7 @@
             document.getElementById("question-container").classList.add("hidden");
             document.getElementById("scoreboard").classList.remove("hidden");
             document.getElementById("next-question-message").classList.remove("hidden");
-            startNextQuestionTimer(10);
+            startNextQuestionTimer(5);
             const scoresList = document.getElementById("scores");
             //const scoresTable = document.getElementById("scores");
             scoresList.innerHTML = "";
