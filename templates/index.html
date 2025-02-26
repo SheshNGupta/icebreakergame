@@ -299,9 +299,12 @@
                 timeLeft--;
                 document.getElementById("timer").innerText = timeLeft;
                 document.getElementById("timer").style.transform = `scale(${1 + (timeLeft / duration) * 0.3})`;
-                if (timeLeft === duration-1) {
+                if (timeLeft <=0) {
                     clearInterval(timerInterval);
+                    if(timeLeft===3)
+                    {
                     highlightCorrectAnswer();
+                    }
                 }
             }, 1000);
         }
