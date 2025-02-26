@@ -109,21 +109,22 @@
         <h2>🏆 Congratulations! 🏆</h2>
         <p>The winner is <span id="winner-name"></span>!</p>
         <button id="restart-game-button" class="hidden" onclick="restartGame()">Restart Game</button>
+            <div id="final-scoreboard" class="hidden">
+            <h2>Final Scores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="final-scores"></tbody>
+            </table>
+        </div>
+
     </div>
-    <div id="final-scoreboard" class="hidden">
-        <h2>Final Scores</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Player</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody id="final-scores"></tbody>
-        </table>
-    </div>
-    <div id="wait-container" class="hidden">
+        <div id="wait-container" class="hidden">
         <h3>Wait for the host to start.. </h3>
           <table>
             <thead>
@@ -223,13 +224,6 @@
             document.getElementById("scoreboard").classList.add("hidden");
             document.getElementById("next-question-message").classList.add("hidden");
             clearInterval(nextQuestionTimerInterval);
-            document.getElementById("winner-container").classList.remove("hidden");
-            document.getElementById("winner-container").style.display = "block";
-            document.getElementById("winner-name").innerText = data.winner;
-            // Show the restart button only if the player is the host
-            if (isHost) {
-                document.getElementById("restart-game-button").classList.remove("hidden");
-            }
             const scoresTable = document.getElementById("final-scores");
             scoresTable.innerHTML = "";
             
@@ -239,7 +233,15 @@
                 row.innerHTML = `<td>${index + 1}</td><td>${player}</td><td>${score}</td>`;
                 scoresTable.appendChild(row);
             });
-        });
+
+            document.getElementById("winner-container").classList.remove("hidden");
+            document.getElementById("winner-container").style.display = "block";
+            document.getElementById("winner-name").innerText = data.winner;
+            // Show the restart button only if the player is the host
+            if (isHost) {
+                document.getElementById("restart-game-button").classList.remove("hidden");
+            }
+            });
 
         socket.on("assign_host", (data) => {
             if (data.username === username) {
