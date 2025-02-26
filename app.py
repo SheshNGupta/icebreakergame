@@ -84,7 +84,7 @@ def start_new_question():
         current_question = game_questions[question_index]
         time_started = time.time()
         socketio.emit("new_question", current_question)
-        threading.Timer(40, show_scores).start()  # Show scores after 60 sec
+        threading.Timer(30, show_scores).start()  # Show scores after 60 sec
 
     else:
         #socketio.emit("game_over", {"message": "Game Over!"})
@@ -97,7 +97,7 @@ def show_scores():
     if (question_index==len(game_questions)):
         handle_game_over()
     else:
-        threading.Timer(10, start_new_question).start()  # Show scores for 30 sec
+        threading.Timer(5, start_new_question).start()  # Show scores for 30 sec
 
 @app.route('/')
 def index():
@@ -131,7 +131,7 @@ def handle_answer(data):
         return
     
     elapsed_time = time.time() - time_started
-    score = max(100 - int(elapsed_time), 60)  # Min 40 points for answering
+    score = max(100 - int(elapsed_time), 70)  # Min 70 points for answering
 
     if answer == current_question["answer"]:
         players[username] += score
