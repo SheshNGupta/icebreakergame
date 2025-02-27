@@ -17,23 +17,51 @@ game_started = False
 
 game_questions = [
     {
+        "question": "Which of the following is a key principle of compliance programs in organizations?",
+        "options": ["Encouraging workplace gossip", "Ignoring regulatory updates", "Promoting ethical behavior and accountability", "Avoiding transparency in reporting"],
+        "answer": "Promoting ethical behavior and accountability",
+        "image": "https://www.eqs.com/assets/2021/03/EQS-Blog_Compliance-Management-1024x576.jpg"
+    },
+    
+    {
         "question": "What is the capital of Canada?",
         "options": ["Toronto", "Vancouver", "Ottawa", "Montreal"],
         "answer": "Ottawa",
         "image": "https://upload.wikimedia.org/wikipedia/commons/2/22/Parliament-Ottawa.jpg"
     },
     {
+        "question": "Which of the following laws governs data privacy and protection in the European Union?",
+        "options": ["HIPAA", "GDPR", "CCPA", "PCI-DSS"],
+        "answer": "GDPR",
+        "image": "https://www.enzuzo.com/hubfs/%E2%80%9CData-Privacy%E2%80%9D-M-2.jpg"
+    },
+    
+    {
         "question": "Who developed the theory of relativity?",
         "options": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Nikola Tesla"],
         "answer": "Albert Einstein",
-        "image": "https://cdn.mos.cms.futurecdn.net/oiX6DtaAcgA3VbfZguy5BV.jpg"
+        "image": "https://www.crystalinks.com/isaac-newton2.jpg"
     },
+    {
+        "question": "What does PCI-DSS ensure compliance for?",
+        "options": ["Handling of customer health records", "Secure processing of credit card transactions", "Anti-money laundering policies", "Corporate tax regulations"],
+        "answer": "Secure processing of credit card transactions",
+        "image": "https://www.paynetworx.co.uk/wp-content/uploads/2023/03/paynetworx-1.png"
+    },
+    
     {
         "question": "Which element has the chemical symbol ‘K’?",
         "options": ["Krypton", "Potassium", "Calcium", "Magnesium"],
         "answer": "Potassium",
         "image": "https://content.health.harvard.edu/wp-content/uploads/2023/09/c0256936-e37b-4d4d-b244-5420273e79f7.jpg"
     },
+    {
+        "question": "What does HIPAA primarily regulate?",
+        "options": ["Financial transactions", "Health information privacy", "Workplace safety", "Environmental protection"],
+        "answer": "Health information privacy",
+        "image": "https://compliancy-group.com/wp-content/uploads/2023/09/hipaa-compliance-1.png"
+    },
+    
     {
         "question": "What year did the first human land on the Moon?",
         "options": ["1965", "1969", "1972", "1959"],
@@ -45,30 +73,6 @@ game_questions = [
         "options": ["Vietnam", "Colombia", "Brazil", "Ethiopia"],
         "answer": "Brazil",
         "image": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
-    },
-    {
-        "question": "Which of the following laws governs data privacy and protection in the European Union?",
-        "options": ["HIPAA", "GDPR", "CCPA", "PCI-DSS"],
-        "answer": "GDPR",
-        "image": "https://www.enzuzo.com/hubfs/%E2%80%9CData-Privacy%E2%80%9D-M-2.jpg"
-    },
-    {
-        "question": "What does HIPAA primarily regulate?",
-        "options": ["Financial transactions", "Health information privacy", "Workplace safety", "Environmental protection"],
-        "answer": "Health information privacy",
-        "image": "https://compliancy-group.com/wp-content/uploads/2023/09/hipaa-compliance-1.png"
-    },
-    {
-        "question": "What does PCI-DSS ensure compliance for?",
-        "options": ["Handling of customer health records", "Secure processing of credit card transactions", "Anti-money laundering policies", "Corporate tax regulations"],
-        "answer": "Secure processing of credit card transactions",
-        "image": "https://static.vecteezy.com/system/resources/previews/005/068/826/non_2x/safety-shield-with-credit-card-an-icon-design-of-secure-transaction-vector.jpg"
-    },
-    {
-        "question": "Which of the following is a key principle of compliance programs in organizations?",
-        "options": ["Encouraging workplace gossip", "Ignoring regulatory updates", "Promoting ethical behavior and accountability", "Avoiding transparency in reporting"],
-        "answer": "Promoting ethical behavior and accountability",
-        "image": "https://www.eqs.com/assets/2021/03/EQS-Blog_Compliance-Management-1024x576.jpg"
     },
     {
         "question": "What is the main goal of Anti-Money Laundering (AML) regulations?",
