@@ -101,7 +101,7 @@ game_questions = [
         "question": "Which financial regulation was introduced after the 2008 financial crisis to increase oversight on banks?",
         "options": ["Dodd-Frank Act", "PATRIOT Act", "Basel III", "Glass-Steagall Act"],
         "answer": "Dodd-Frank Act",
-        "image": "https://assets.editorial.aetnd.com/uploads/2018/01/gettyimages-525578460.jpg"
+        "image": "https://www.federalreservehistory.org/-/media/images/dodd_frank_act_1.jpg"
     },
     {
         "question": "Who is known as the father of computers?",
