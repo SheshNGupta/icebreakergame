@@ -79,6 +79,41 @@ game_questions = [
         "options": ["Encouraging cryptocurrency use", "Preventing financial fraud and illegal transactions", "Reducing corporate taxes", "Increasing government spending"],
         "answer": "Preventing financial fraud and illegal transactions",
         "image": "https://i0.wp.com/authme.com/wp-content/uploads/2024/07/shutterstock_2438582797.jpg"
+    },
+    {
+        "question": "What is the smallest unit of life?",
+        "options": ["Atom", "Molecule", "Cell", "Organ"],
+        "answer": "Cell",
+        "image": "https://i.swncdn.com/media/950w/cms/CW/faith/59915-aleksandr-ledogorov-310150-unsplash.1200w.tn.jpg"
+    },
+    {
+    "question": "What does TILA stand for in financial regulations?",
+    "options": [
+        "Total Investment and Lending Agreement",
+        "Truth in Lending Act",
+        "Tax and Interest Lending Association",
+        "Transparency in Loan Agreements"
+    ],
+    "answer": "Truth in Lending Act",
+    "image": "https://www.adirondackbank.com/assets/Blog/May9_TruthInLending__FocusFillWyIwLjAwIiwiMC4wMCIsMjIwMCw5MDBd.png"
+},
+    {
+        "question": "Which financial regulation was introduced after the 2008 financial crisis to increase oversight on banks?",
+        "options": ["Dodd-Frank Act", "PATRIOT Act", "Basel III", "Glass-Steagall Act"],
+        "answer": "Dodd-Frank Act",
+        "image": "https://assets.editorial.aetnd.com/uploads/2018/01/gettyimages-525578460.jpg"
+    },
+    {
+        "question": "Who is known as the father of computers?",
+        "options": ["Alan Turing", "Charles Babbage", "Tim Berners-Lee", "Steve Jobs"],
+        "answer": "Charles Babbage",
+        "image": "https://techbeesblog.wordpress.com/wp-content/uploads/2016/08/charlesbabbage.jpg?w=672"
+    },
+    {
+        "question": "What does the term 'KYC' stand for in financial compliance?",
+        "options": ["Know Your Customer", "Keep Your Credit", "Key Yield Calculation", "Know Your Compliance"],
+        "answer": "Know Your Customer",
+        "image": "https://www.processmaker.com/wp-content/uploads/2021/02/KYC-PROCESS-scaled.jpg"
     }
 ]
 
