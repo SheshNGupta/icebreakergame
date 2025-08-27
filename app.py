@@ -62,7 +62,7 @@ game_questions = [
         "question": "What is the world’s largest ocean?",
         "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
         "answer": "Pacific Ocean",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Pacific_Ocean_-_en.png"
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjQMNkjmD_MfECAEJHSAC8io6CmliKor_F2Q&s"
     },
     {
         "question": "Which financial law requires institutions to report large cash transactions to prevent money laundering?",
