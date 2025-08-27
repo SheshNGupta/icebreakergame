@@ -17,103 +17,94 @@ game_started = False
 
 game_questions = [
     {
-        "question": "Which of the following is a key principle of compliance programs in organizations?",
-        "options": ["Encouraging workplace gossip", "Ignoring regulatory updates", "Promoting ethical behavior and accountability", "Avoiding transparency in reporting"],
-        "answer": "Promoting ethical behavior and accountability",
-        "image": "https://www.eqs.com/assets/2021/03/EQS-Blog_Compliance-Management-1024x576.jpg"
-    },
-    
-    {
-        "question": "What is the capital of Canada?",
-        "options": ["Toronto", "Vancouver", "Ottawa", "Montreal"],
-        "answer": "Ottawa",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/2/22/Parliament-Ottawa.jpg"
+        "question": "Which planet is known as the Red Planet?",
+        "options": ["Mars", "Venus", "Jupiter", "Mercury"],
+        "answer": "Mars",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg"
     },
     {
-        "question": "Which of the following laws governs data privacy and protection in the European Union?",
-        "options": ["HIPAA", "GDPR", "CCPA", "PCI-DSS"],
-        "answer": "GDPR",
-        "image": "https://www.enzuzo.com/hubfs/%E2%80%9CData-Privacy%E2%80%9D-M-2.jpg"
-    },
-    
-    {
-        "question": "Who developed the theory of relativity?",
-        "options": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Nikola Tesla"],
-        "answer": "Albert Einstein",
-        "image": "https://www.crystalinks.com/isaac-newton2.jpg"
+        "question": "What is the primary purpose of the Sarbanes-Oxley Act (SOX)?",
+        "options": ["Regulate healthcare", "Ensure corporate financial transparency", "Manage environmental policies", "Oversee international trade"],
+        "answer": "Ensure corporate financial transparency",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZhKAVGgaRdRFUv2pHxOCMBY-WRZ_RFec34w&s"
     },
     {
-        "question": "What does PCI-DSS ensure compliance for?",
-        "options": ["Handling of customer health records", "Secure processing of credit card transactions", "Anti-money laundering policies", "Corporate tax regulations"],
-        "answer": "Secure processing of credit card transactions",
-        "image": "https://www.paynetworx.co.uk/wp-content/uploads/2023/03/paynetworx-1.png"
-    },
-    
-    {
-        "question": "Which element has the chemical symbol ‘K’?",
-        "options": ["Krypton", "Potassium", "Calcium", "Magnesium"],
-        "answer": "Potassium",
-        "image": "https://content.health.harvard.edu/wp-content/uploads/2023/09/c0256936-e37b-4d4d-b244-5420273e79f7.jpg"
+        "question": "Which organ in the human body is responsible for filtering blood?",
+        "options": ["Liver", "Kidney", "Lungs", "Heart"],
+        "answer": "Kidney",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgCGUkT5TXQ8VM7aOUHIipJEXS6mTZYcm_pA&s"
     },
     {
-        "question": "What does HIPAA primarily regulate?",
-        "options": ["Financial transactions", "Health information privacy", "Workplace safety", "Environmental protection"],
-        "answer": "Health information privacy",
-        "image": "https://compliancy-group.com/wp-content/uploads/2023/09/hipaa-compliance-1.png"
-    },
-    
-    {
-        "question": "What year did the first human land on the Moon?",
-        "options": ["1965", "1969", "1972", "1959"],
-        "answer": "1969",
-        "image": "https://d31nhj1t453igc.cloudfront.net/cloudinary/2022/Apr/08/8y8xQ0LrSBPfDOQFjbpC.jpg"
+        "question": "Which country gifted the Statue of Liberty to the United States?",
+        "options": ["France", "Spain", "Italy", "Germany"],
+        "answer": "France",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Statue_of_Liberty_7.jpg"
     },
     {
-        "question": "Which country is the largest producer of coffee?",
-        "options": ["Vietnam", "Colombia", "Brazil", "Ethiopia"],
-        "answer": "Brazil",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
+        "question": "What does the Basel III framework primarily regulate?",
+        "options": ["Banking capital and liquidity standards", "Trade tariffs", "Cryptocurrency exchanges", "Corporate taxation"],
+        "answer": "Banking capital and liquidity standards",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGZL8LsI76Z9J43aIyoFHKtnJqlvULrDYZPg&s"
     },
     {
-        "question": "What is the main goal of Anti-Money Laundering (AML) regulations?",
-        "options": ["Encouraging cryptocurrency use", "Preventing financial fraud and illegal transactions", "Reducing corporate taxes", "Increasing government spending"],
-        "answer": "Preventing financial fraud and illegal transactions",
-        "image": "https://i0.wp.com/authme.com/wp-content/uploads/2024/07/shutterstock_2438582797.jpg"
+        "question": "Who painted the Mona Lisa?",
+        "options": ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Michelangelo"],
+        "answer": "Leonardo da Vinci",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Mona_Lisa.jpg"
     },
     {
-        "question": "What is the smallest unit of life?",
-        "options": ["Atom", "Molecule", "Cell", "Organ"],
-        "answer": "Cell",
-        "image": "https://i.swncdn.com/media/950w/cms/CW/faith/59915-aleksandr-ledogorov-310150-unsplash.1200w.tn.jpg"
+        "question": "Which gas do humans primarily exhale after breathing?",
+        "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+        "answer": "Carbon Dioxide",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCuNw_aEbq_KIZmwm3qj2v-6Ncp5-W8uh39g&s"
     },
     {
-    "question": "What does TILA stand for in financial regulations?",
-    "options": [
-        "Total Investment and Lending Agreement",
-        "Truth in Lending Act",
-        "Tax and Interest Lending Association",
-        "Transparency in Loan Agreements"
-    ],
-    "answer": "Truth in Lending Act",
-    "image": "https://www.adirondackbank.com/assets/Blog/May9_TruthInLending__FocusFillWyIwLjAwIiwiMC4wMCIsMjIwMCw5MDBd.png"
-},
-    {
-        "question": "Which financial regulation was introduced after the 2008 financial crisis to increase oversight on banks?",
-        "options": ["Dodd-Frank Act", "PATRIOT Act", "Basel III", "Glass-Steagall Act"],
-        "answer": "Dodd-Frank Act",
-        "image": "https://www.federalreservehistory.org/-/media/images/dodd_frank_act_1.jpg"
+        "question": "What is the world’s largest ocean?",
+        "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+        "answer": "Pacific Ocean",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Pacific_Ocean_-_en.png"
     },
     {
-        "question": "Who is known as the father of computers?",
-        "options": ["Alan Turing", "Charles Babbage", "Tim Berners-Lee", "Steve Jobs"],
-        "answer": "Charles Babbage",
-        "image": "https://techbeesblog.wordpress.com/wp-content/uploads/2016/08/charlesbabbage.jpg?w=672"
+        "question": "Which financial law requires institutions to report large cash transactions to prevent money laundering?",
+        "options": ["Bank Secrecy Act", "SOX", "GDPR", "FCPA"],
+        "answer": "Bank Secrecy Act",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQi1RCr5WbO_t1YS1b4Z0ci0biO6d-bGXwZw&s"
     },
     {
-        "question": "What does the term 'KYC' stand for in financial compliance?",
-        "options": ["Know Your Customer", "Keep Your Credit", "Key Yield Calculation", "Know Your Compliance"],
-        "answer": "Know Your Customer",
-        "image": "https://www.processmaker.com/wp-content/uploads/2021/02/KYC-PROCESS-scaled.jpg"
+        "question": "Which is the largest mammal in the world?",
+        "options": ["African Elephant", "Blue Whale", "Giraffe", "Humpback Whale"],
+        "answer": "Blue Whale",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShn5CVb4UJIdJE8nGFpvcBXJ9vPfAIRIV03g&s"
+    },
+    {
+        "question": "What is the chemical symbol for gold?",
+        "options": ["Au", "Ag", "Gd", "Go"],
+        "answer": "Au",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGJSSF-L49T0YwP761T-awID7VW_KQjpCrYw&s"
+    },
+    {
+        "question": "Which financial regulation focuses on preventing bribery of foreign officials?",
+        "options": ["FCPA", "AML", "Dodd-Frank", "GDPR"],
+        "answer": "FCPA",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_GKEGDOtC4SAlag3Gcoq8JIrN7oJ2VNnnDw&s"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth?",
+        "options": ["Steel", "Diamond", "Quartz", "Granite"],
+        "answer": "Diamond",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhuCj1gq-LSSGO-zYvwAuj5p-0qnkbyc5ljw&s"
+    },
+    {
+        "question": "Which U.S. agency enforces securities laws and protects investors?",
+        "options": ["SEC", "FINRA", "FDIC", "OCC"],
+        "answer": "SEC",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTXopHWQDjXaLrPwdobwwFJzsxt18uf6-QeQ&s"
+    },
+    {
+        "question": "Which natural disaster is measured using the Richter scale?",
+        "options": ["Hurricanes", "Earthquakes", "Tornadoes", "Floods"],
+        "answer": "Earthquakes",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5yLsO-TqA0a1opiyeJ1L8q1oDtY5rh2MbtA&s"
     }
 ]
 
